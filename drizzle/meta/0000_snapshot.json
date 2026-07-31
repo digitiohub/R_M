@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "1496b81a-9be8-4058-ac72-e2a4eb9580bc",
+  "id": "33724e1e-0b09-448d-8d6f-0f56668c95ca",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "articles": {
@@ -67,15 +67,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "services_slug_unique": {
-          "name": "services_slug_unique",
-          "columns": [
-            "slug"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -240,15 +232,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "services_slug_unique": {
-          "name": "services_slug_unique",
-          "columns": [
-            "slug"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -402,15 +386,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "services_slug_unique": {
-          "name": "services_slug_unique",
-          "columns": [
-            "slug"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -479,15 +455,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "services_slug_unique": {
-          "name": "services_slug_unique",
-          "columns": [
-            "slug"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},

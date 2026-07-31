@@ -9,7 +9,6 @@ CREATE TABLE `articles` (
 	`body` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `services_slug_unique` ON `articles` (`slug`);--> statement-breakpoint
 CREATE TABLE `audit_enquiries` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`name` text NOT NULL,
@@ -36,7 +35,6 @@ CREATE TABLE `case_studies` (
 	`metric_label` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `services_slug_unique` ON `case_studies` (`slug`);--> statement-breakpoint
 CREATE TABLE `contact_enquiries` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`name` text NOT NULL,
@@ -63,7 +61,6 @@ CREATE TABLE `masterclasses` (
 	`duration` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `services_slug_unique` ON `masterclasses` (`slug`);--> statement-breakpoint
 CREATE TABLE `services` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`title` text NOT NULL,
@@ -75,7 +72,6 @@ CREATE TABLE `services` (
 	`metric` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `services_slug_unique` ON `services` (`slug`);--> statement-breakpoint
 CREATE TABLE `testimonials` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`quote` text NOT NULL,
