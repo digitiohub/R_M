@@ -92,6 +92,25 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
+## Deploy with Coolify
+
+Create a new Coolify application from this Git repository and select
+**Dockerfile** as the build pack. Keep the Dockerfile location as `/Dockerfile`
+and set the container port to `3000`.
+
+If the public WhatsApp number needs to differ from the built-in fallback, add
+`NEXT_PUBLIC_RETENTIONMAX_WHATSAPP` as a Coolify build-time variable, using
+digits only (including the country code), and redeploy. Coolify can manage the
+domain and HTTPS proxy; the container itself listens on `0.0.0.0:3000`.
+
+The image includes a health check against `/`. No custom start command is
+required.
+
+The current `/api/audit` persistence layer uses Cloudflare D1. The public site
+runs normally on Coolify, but audit form submissions require either a
+Cloudflare runtime or a future migration of that endpoint to a VPS-accessible
+database such as PostgreSQL.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)

@@ -1,0 +1,13 @@
+.git
+.gitignore
+.openai
+.wrangler
+.vinext
+dist
+node_modules
+npm-debug.log*
+.dev-server.log
+.env*
+!.env.example
+README.md
+tests

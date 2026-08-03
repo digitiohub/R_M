@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (!urlPattern.test(b.website)) return Response.json({ error: "Website must begin with http:// or https://." }, { status: 400 });
     if (b.phone.replace(/\D/g,"").length < 7) return Response.json({ error: "Please enter a valid phone number." }, { status: 400 });
     if (b.consent !== "true") return Response.json({ error: "Consent is required." }, { status: 400 });
-    const db = getDb();
+    const db = await getDb();
     await db.insert(auditEnquiries).values({
       name: b.name.trim(), company: b.company.trim(), email: b.email.trim().toLowerCase(), phone: b.phone.trim(),
       website: b.website.trim(), orderVolume: b.orderVolume, platforms: b.platforms?.trim() || "", challenge: b.challenge.trim(), consent: true,
