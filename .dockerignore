@@ -1,6 +1,9 @@
 .git
 .gitignore
-.openai
+# The Vinext config imports hosting.json during the build. Exclude local logs,
+# but keep this non-secret build configuration in the Docker context.
+.openai/*
+!.openai/hosting.json
 .wrangler
 .vinext
 dist
