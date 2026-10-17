@@ -1,4 +1,9 @@
 import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: "https://retentionmax.com", lastModified: new Date(), changeFrequency: "weekly", priority: 1 }];
+  const base = "https://www.retentionmax.in";
+  return [
+    { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/services`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+  ];
 }

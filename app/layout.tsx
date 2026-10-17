@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://retentionmax.com"),
+  metadataBase: new URL("https://www.retentionmax.in"),
   title: { default: "RetentionMax — Customer Retention, Engineered", template: "%s | RetentionMax" },
   description: "Data-driven customer journeys across Email, WhatsApp, SMS and Web Push that turn first-time buyers into loyal customers.",
   alternates: { canonical: "/" },
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": ["Organization","ProfessionalService"], "@id": "https://retentionmax.com/#org", name: "RetentionMax", url: "https://retentionmax.com", description: "Customer retention marketing consultancy.", areaServed: "Worldwide", knowsAbout: ["Email Marketing","WhatsApp Marketing","SMS Marketing","Customer Retention","Marketing Automation"] },
-    { "@type": "Course", name: "Why Your Customers Don’t Come Back", description: "A free retention marketing masterclass.", provider: { "@id": "https://retentionmax.com/#org" } },
+    { "@type": ["Organization","ProfessionalService"], "@id": "https://www.retentionmax.in/#org", name: "RetentionMax", url: "https://www.retentionmax.in", description: "Customer retention marketing consultancy.", areaServed: "Worldwide", knowsAbout: ["Email Marketing","WhatsApp Marketing","SMS Marketing","Customer Retention","Marketing Automation"] },
+    { "@type": "Course", name: "Why Your Customers Don’t Come Back", description: "A free retention marketing masterclass.", provider: { "@id": "https://www.retentionmax.in/#org" } },
     { "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "What does a retention audit include?", acceptedAnswer: { "@type": "Answer", text: "A review of your lifecycle, data, creative, channel mix and priority retention opportunities." } }] },
-    { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://retentionmax.com/" }] }
+    { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.retentionmax.in/" }] }
   ]
 };
 
