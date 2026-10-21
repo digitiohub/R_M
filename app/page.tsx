@@ -303,7 +303,7 @@ export default function Home() {
     <main>
       <Starfield />
       <nav className="nav shell">
-        <a className="logo" href="#top" aria-label="RetentionMax home"><span>R</span>RetentionMax</a>
+        <a className="logo" href="#top" aria-label="RetentionMax home"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a>
         <button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle navigation">MENU</button>
         <div className={`links ${menu ? "open" : ""}`}>
           <a href="/services">Services</a><a href="/about">About</a><a href="#work">Work</a><a href="#process">Process</a>
@@ -468,7 +468,7 @@ export default function Home() {
       </section>
 
       <section className="final-cta shell"><span>READY WHEN YOU ARE</span><h2>Make the next<br />purchase <em>inevitable.</em></h2><a href="#audit" className="round-cta">LET’S GROW <Arrow /></a></section>
-      <footer><div className="shell footer-top"><a className="logo" href="#top"><span>R</span>RetentionMax</a><p>Customer retention systems for brands<br />built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="#process">Process</a><a href="#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+      <footer><div className="shell footer-top"><a className="logo" href="#top"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br />built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="#process">Process</a><a href="#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
       <RetentionChat />
     </main>
   );

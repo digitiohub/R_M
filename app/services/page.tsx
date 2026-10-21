@@ -26,7 +26,7 @@ export default function ServicesPage() {
 
   return <main className="services-page" ref={page}>
     <nav className="nav shell">
-      <a className="logo" href="/" aria-label="RetentionMax home"><span>R</span>RetentionMax</a>
+      <a className="logo" href="/" aria-label="RetentionMax home"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a>
       <button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle navigation">MENU</button>
       <div className={`links ${menu ? "open" : ""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#process">Process</a></div>
       <a href="/#audit" className="nav-cta">Free retention audit <span aria-hidden="true">↗</span></a>
@@ -54,7 +54,7 @@ export default function ServicesPage() {
     </section>
 
     <section className="services-close"><div className="shell" data-reveal><span>NOT SURE WHERE TO START?</span><h2>Start with the customer.<br/><em>We’ll map the system.</em></h2><p>A focused retention audit will identify the clearest opportunities across your lifecycle, channels and data.</p><a href="/#audit">Get your free retention audit <span>↗</span></a></div></section>
-    <footer><div className="shell footer-top"><a className="logo" href="/"><span>R</span>RetentionMax</a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+    <footer><div className="shell footer-top"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
     <RetentionChat />
   </main>;
 }

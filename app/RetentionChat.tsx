@@ -38,7 +38,7 @@ function answerFor(input: string, name?: string) {
 }
 
 export default function RetentionChat() {
-  const whatsappNumber = (process.env.NEXT_PUBLIC_RETENTIONMAX_WHATSAPP || "918483952398").replace(/\D/g, "");
+  const whatsappNumber = (process.env.NEXT_PUBLIC_RETENTIONMAX_WHATSAPP || "919545553455").replace(/\D/g, "");
   const whatsappMessage = encodeURIComponent("Hi RetentionMax, I’d like to discuss improving customer retention for my brand.");
   const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}` : "#audit";
   const [open, setOpen] = useState(false);

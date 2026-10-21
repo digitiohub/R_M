@@ -20,7 +20,7 @@ export default function AboutPage() {
   },[]);
 
   return <main className="about-page" ref={root}>
-    <nav className="nav shell"><a className="logo" href="/"><span>R</span>RetentionMax</a><button className="menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">MENU</button><div className={`links ${menu?"open":""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#process">Process</a></div><a href="/#audit" className="nav-cta">Free retention audit <span>↗</span></a></nav>
+    <nav className="nav shell"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><button className="menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">MENU</button><div className={`links ${menu?"open":""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#process">Process</a></div><a href="/#audit" className="nav-cta">Free retention audit <span>↗</span></a></nav>
 
     <header className="about-hero shell">
       <span className="about-kicker"><i/> ABOUT RETENTIONMAX / BUILT FOR ORDER NUMBER TWO</span>
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
     <section className="about-close"><div className="shell" data-about-reveal><span>LET’S BUILD THE SECOND PURCHASE</span><h2>Bring us the customer.<br/><em>We’ll find the opportunity.</em></h2><a href="/#audit">Start with a free audit <span>↗</span></a></div></section>
 
-    <footer><div className="shell footer-top"><a className="logo" href="/"><span>R</span>RetentionMax</a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+    <footer><div className="shell footer-top"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
     <RetentionChat/>
   </main>;
 }
