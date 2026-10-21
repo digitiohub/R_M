@@ -449,7 +449,7 @@ export default function Home() {
 
       <section className="testimonial shell">
         <span className="quote">“</span><blockquote>RetentionMax helped us stop thinking in campaigns and start thinking in customer journeys.</blockquote>
-        <div><b>PLACEHOLDER TESTIMONIAL</b><span>Replace with verified client quote and attribution</span></div>
+        <div><b>NAYAN SHAH</b></div>
       </section>
 
       <section className="audit" id="audit">

@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import RetentionChat from "../RetentionChat";
 
 const founders = [
-  { n:"01", initials:"CS", role:"Co-founder / Strategy", focus:"Customer strategy, lifecycle architecture and commercial growth.", skills:["RETENTION STRATEGY","CUSTOMER LTV","GROWTH SYSTEMS"], tone:"violet" },
-  { n:"02", initials:"CX", role:"Co-founder / Experience", focus:"Creative systems, channel experience and journey execution.", skills:["CREATIVE DIRECTION","AUTOMATION","EXPERIENCE DESIGN"], tone:"lime" },
+  { n:"01", name:"Ganesh Kamble", role:"Co-founder, RetentionMax", photo:"/about/ganesh-kamble.jpg", tagline:{ text:"The_CLTV_Guy · Retention Simplified", href:"https://thecltvguy.retentionmax.in" }, pop:"12+ YRS LIFECYCLE", points:["12+ years in lifecycle and CRM; $10M+ incremental revenue driven","Ex Häfele, Hiranandani, Cox & Kings (ezeego1), Future Group, Accenture (analytics)","CLTV, RFM, cohort and market-basket analytics behind every plan","18 brands including Godrej Properties, MuscleTech India, Mackly"], brands:"/about/ganesh-brands.png", brandsAlt:"ezeego1, Häfele, Sugar, Future Group, Accenture, MuscleTech, Allmax, Mackly", tone:"violet" },
+  { n:"02", name:"Vishal Singh", role:"Co-founder, RetentionMax", photo:"/about/vishal-singh.jpg", tagline:{ text:"Helps brands grow repeat revenue with WhatsApp and retention systems" }, pop:"100+ WHATSAPP BUILDS", points:["100+ WhatsApp marketing and retention implementations","Builds welcome, abandoned-cart, post-purchase and win-back journeys","Chief Growth Officer, Bits & Pixels (since 2019)","7+ years at Patni / iGate / Capgemini: delivery for McDonald's, Subway, Meijer across India, USA, Europe"], brands:"/about/vishal-brands.png", brandsAlt:"Godrej, Maharaja Bhog, Hilton, Lecturewala, Native Milk", tone:"lime" },
 ];
 
 export default function AboutPage() {
@@ -34,12 +34,13 @@ export default function AboutPage() {
     <section className="about-numbers shell" data-about-reveal><article><b>02</b><span>Co-founders<br/>one shared standard</span></article><article><b>07</b><span>Connected<br/>retention capabilities</span></article><article><b>01</b><span>Customer view<br/>across every channel</span></article><article><b>∞</b><span>Cycles of learning<br/>and improvement</span></article></section>
 
     <section className="about-founders shell" id="founders">
-      <div className="about-section-head" data-about-reveal><span>02 / THE FOUNDERS</span><h2>Two disciplines.<br/><em>One customer system.</em></h2><p>Replace these editable profiles with verified founder names, portraits and biographies before publishing.</p></div>
+      <div className="about-section-head" data-about-reveal><span>02 / THE FOUNDERS</span><h2>Two disciplines.<br/><em>One customer system.</em></h2><p>A retention marketing agency for D2C brands: audits, lifecycle automation, CLTV and cohort analytics, WhatsApp, email, RCS and SMS.</p></div>
       <div className="founder-grid">
         {founders.map((founder,index)=><article className={`founder-card founder-${founder.tone}`} data-about-reveal style={{"--founder-delay":`${index*180}ms`} as React.CSSProperties} key={founder.n}>
           <div className="founder-top"><span>{founder.n} / CO-FOUNDER</span><i>↗</i></div>
-          <div className="founder-portrait" aria-hidden="true"><div className="founder-orbit"><i/><i/></div><b>{founder.initials}</b><span className="founder-pop pop-one">CO-FOUNDER</span><span className="founder-pop pop-two">RETENTIONMAX</span></div>
-          <div className="founder-copy"><small>NAME TO BE ADDED</small><h3>{founder.role}</h3><p>{founder.focus}</p><div>{founder.skills.map(skill=><span key={skill}>{skill}</span>)}</div></div>
+          <div className="founder-portrait"><div className="founder-orbit" aria-hidden="true"><i/><i/></div><img src={founder.photo} alt={founder.name} width="230" height="230" /><span className="founder-pop pop-one" aria-hidden="true">CO-FOUNDER</span><span className="founder-pop pop-two" aria-hidden="true">{founder.pop}</span></div>
+          <div className="founder-copy"><small>{founder.role.toUpperCase()}</small><h3>{founder.name}</h3><p>{founder.tagline.href?<a href={founder.tagline.href} target="_blank" rel="noreferrer">{founder.tagline.text} <span>↗</span></a>:founder.tagline.text}</p><ul>{founder.points.map(point=><li key={point}>{point}</li>)}</ul></div>
+          <div className="founder-brands"><span>WORKED WITH</span><img src={founder.brands} alt={founder.brandsAlt} /></div>
         </article>)}
       </div>
     </section>
