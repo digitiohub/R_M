@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: { title: "RetentionMax — Turn First-Time Buyers Into Lifelong Customers", description: "A connected retention growth engine for ambitious brands.", type: "website", url: "/", images: [{ url: "/og.png", width: 1760, height: 917, alt: "RetentionMax retention growth engine" }] },
   twitter: { card: "summary_large_image", title: "RetentionMax — Customer Retention, Engineered", description: "Turn first-time buyers into lifelong customers.", images: ["/og.png"] },
   robots: { index: true, follow: true },
+  icons: { icon: [{ url: "/favicon.ico", sizes: "32x32" }, { url: "/icon-192.png", type: "image/png", sizes: "192x192" }, { url: "/icon-512.png", type: "image/png", sizes: "512x512" }], apple: "/apple-touch-icon.png" },
 };
 
 const schema = {
