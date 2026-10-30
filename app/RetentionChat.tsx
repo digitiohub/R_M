@@ -50,6 +50,7 @@ export default function RetentionChat() {
   const [showServiceChoices, setShowServiceChoices] = useState(false);
   const [leadStage, setLeadStage] = useState<LeadStage>(null);
   const [leadDraft, setLeadDraft] = useState<{ name?: string; challenge?: string; email?: string }>({});
+  const [typing, setTyping] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,11 +113,23 @@ export default function RetentionChat() {
       setMessages(current => [...current, { id: time, from: "user", text: clean }, { id: time + 1, from: "bot", text: `You’re all set, ${leadDraft.name}. I’ve saved your details and retention challenge on this device. You can now message the team directly on WhatsApp below.` }]);
       setLeadStage(null); setInput(""); return;
     }
-    setMessages(current => [...current, { id: time, from: "user", text: clean }, { id: time + 1, from: "bot", text: answerFor(clean, profile.name) }]);
+    const history = [...messages, { id: time, from: "user" as const, text: clean }];
+    setMessages(history);
     setShowQuickActions(false);
     setShowServiceChoices(false);
     if (/contact|team|call|book|talk/.test(clean.toLowerCase())) setLeadForm(true);
     setInput("");
+    setTyping(true);
+    fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history.map(m => ({ role: m.from === "bot" ? "assistant" : "user", content: m.text })) }),
+    })
+      .then(async res => { const data = await res.json() as { reply?: string }; if (!res.ok || !data.reply) throw new Error(); return data.reply; })
+      // Keep the keyword answers as a fallback when the API is unavailable.
+      .catch(() => answerFor(clean, profile.name))
+      .then(reply => setMessages(current => [...current, { id: Date.now(), from: "bot", text: reply }]))
+      .finally(() => setTyping(false));
   };
 
   const selectService = (serviceName: string) => {
@@ -152,6 +165,7 @@ export default function RetentionChat() {
           <p>{message.text}</p>
           {message.from === "bot" && <div className="chat-feedback"><span>Helpful?</span><button className={message.feedback === "up" ? "selected" : ""} onClick={() => feedback(message.id,"up")} aria-label="Helpful answer">↑</button><button className={message.feedback === "down" ? "selected" : ""} onClick={() => feedback(message.id,"down")} aria-label="Unhelpful answer">↓</button></div>}
         </div>)}
+        {typing && <div className="chat-message bot"><p>Typing…</p></div>}
         {!leadForm && showQuickActions && <div className="chat-quick">{quickReplies.map(reply => <button key={reply} onClick={() => {
           if (reply === "Recommend a service") {
             setShowQuickActions(false);
