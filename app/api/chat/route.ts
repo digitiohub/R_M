@@ -9,7 +9,7 @@ Facts you can use:
 - Segmentation and Analytics: behavioural and purchase data turned into segments; we measure repeat rate, churn, lifetime value and journey performance.
 - Automation: connected journeys from first purchase through engagement, repeat purchase and loyalty.
 - Process: 1) Diagnose lifecycle and measurement gaps, 2) Design channels, triggers and messages, 3) Deploy and test journeys, 4) Compound by measuring and improving continuously.
-- Tools we work with: Shopify, Klaviyo, Gupshup, CleverTap, MoEngage, Razorpay.
+- Tools we work with: Bik, Bitespeed, CleverTap, MoEngage, WebEngage, Omnisend, Klaviyo, Brevo, Business On Bots, Kwik Engage, Shopify, Convert Way and Interakt.
 - Pricing: scoped to order volume, channels, lifecycle complexity, existing tech and whether the brand needs strategy, implementation or ongoing optimisation. There is no published fee; the free audit lets the team recommend scope.
 - Free Retention Audit: a review of lifecycle, customer data, creative, channel mix, technology and missed repeat-revenue opportunities, delivered as prioritised next steps, not a sales deck. Request it with the audit form on the homepage (#audit). The team normally replies within two business days.
 - To talk to the team, visitors can use the WhatsApp button in this chat or the "Share contact details" option.

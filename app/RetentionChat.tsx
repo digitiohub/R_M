@@ -31,7 +31,7 @@ function answerFor(input: string, name?: string) {
   if (/audit|free/.test(q)) return "Free Retention Audit: we review your existing lifecycle, customer data, creative, channel mix, technology, and missed repeat-revenue opportunities. You receive prioritized next steps—not a generic sales deck. The team normally replies within two business days.";
   if (/process|how it works|start/.test(q)) return "Our four-stage process is: 1) Diagnose—find lifecycle and measurement gaps; 2) Design—map channels, triggers, and messages; 3) Deploy—build and test the journeys; 4) Compound—measure behavior and improve performance continuously.";
   if (/price|pricing|cost|fee|budget/.test(q)) return "Engagements are scoped around your order volume, number of channels, lifecycle complexity, existing technology, and whether you need strategy, implementation, or ongoing optimization. We do not publish a one-size-fits-all fee; the free audit gives the team enough context to recommend the right scope.";
-  if (/shopify|klaviyo|gupshup|clevertap|moengage|razorpay|integrat/.test(q)) return "We work with tools including Shopify, Klaviyo, Gupshup, CleverTap, MoEngage, and Razorpay, and can assess how your current stack should connect.";
+  if (/\bbik\b|bitespeed|clevertap|moengage|webengage|omnisend|klaviyo|brevo|business on bots|kwik|shopify|convert ?way|interakt|integrat/.test(q)) return "We work with tools including Bik, Bitespeed, CleverTap, MoEngage, WebEngage, Omnisend, Klaviyo, Brevo, Business On Bots, Kwik Engage, Shopify, Convert Way and Interakt, and can assess how your current stack should connect.";
   if (/contact|team|call|book|talk/.test(q)) return "Absolutely. Choose “Share contact details” below and I’ll collect the information the RetentionMax team needs to follow up.";
   if (/what do you do|service|retentionmax/.test(q)) return "RetentionMax builds connected customer-retention systems across Email, WhatsApp, SMS, Web Push, segmentation, automation, and analytics—designed to increase repeat purchases and lifetime value.";
   return "I can help with Email, WhatsApp, SMS, Web Push, segmentation, automation, analytics, the free audit, or contacting the team. Which would you like to explore?";
@@ -159,7 +159,7 @@ export default function RetentionChat() {
 
   return <div className={`retention-chat ${open ? "chat-open" : ""}`}>
     {open && <section className="chat-panel" aria-label="RetentionMax assistant">
-      <header><div><span className="chat-avatar">R<i className="chat-status"/></span><span className="chat-title"><em>AI RETENTION GUIDE</em><b>RetentionMax Assistant</b><small>Online · Typically replies instantly</small></span></div><button onClick={() => setOpen(false)} aria-label="Close chat">×</button></header>
+      <header><div><span className="chat-avatar"><img src="/max-logo.svg" alt="" width="285" height="100" /><i className="chat-status"/></span><span className="chat-title"><em>AI RETENTION GUIDE</em><b>RetentionMax Assistant</b><small>Online · Typically replies instantly</small></span></div><button onClick={() => setOpen(false)} aria-label="Close chat">×</button></header>
       <div className="chat-messages">
         {messages.map(message => <div className={`chat-message ${message.from}`} key={message.id}>
           <p>{message.text}</p>
@@ -184,6 +184,6 @@ export default function RetentionChat() {
       <form className="chat-input" onSubmit={event => { event.preventDefault(); send(input); }}><input value={input} onChange={event => setInput(event.target.value)} placeholder={leadStage === "name" ? "Enter your name…" : leadStage === "challenge" ? "Describe your challenge…" : leadStage === "email" ? "Enter your work email…" : leadStage === "phone" ? "Enter phone with country code…" : "Ask a detailed question…"} aria-label="Chat message"/><button aria-label="Send message">↗</button></form>
       <small className="chat-memory">Conversation memory is stored only on this device.</small>
     </section>}
-    <button className="chat-launcher" onClick={() => setOpen(value => !value)} aria-label={open ? "Close chat" : "Open chat"}><span>{open ? "×" : "R"}</span><b>{open ? "CLOSE" : "ASK RETENTIONMAX"}</b></button>
+    <button className="chat-launcher" onClick={() => setOpen(value => !value)} aria-label={open ? "Close chat" : "Open chat"}><span>{open ? "×" : <img src="/max-logo.svg" alt="" width="285" height="100" />}</span><b>{open ? "CLOSE" : "ASK RETENTIONMAX"}</b></button>
   </div>;
 }

@@ -20,13 +20,13 @@ export default function AboutPage() {
   },[]);
 
   return <main className="about-page" ref={root}>
-    <nav className="nav shell"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><button className="menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">MENU</button><div className={`links ${menu?"open":""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#process">Process</a></div><a href="/#audit" className="nav-cta">Free retention audit <span>↗</span></a></nav>
+    <nav className="nav shell"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><button className="menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">MENU</button><div className={`links ${menu?"open":""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a></div><a href="/#audit" className="nav-cta">Free retention audit <span>↗</span></a></nav>
 
     <header className="about-hero shell">
       <span className="about-kicker"><i/> ABOUT RETENTIONMAX / BUILT FOR ORDER NUMBER TWO</span>
       <h1>We help brands<br/><em>earn the return.</em></h1>
       <div className="about-hero-copy"><p>RetentionMax is a customer-retention studio connecting strategy, data, creative and technology around one commercial goal: more valuable customer relationships.</p><a href="#founders">MEET THE FOUNDERS <span>↓</span></a></div>
-      <div className="about-hero-mark" aria-hidden="true"><div><b>R</b><i/><i/><i/></div><span>RELATIONSHIPS<br/>COMPOUND HERE</span></div>
+      <div className="about-hero-mark" aria-hidden="true"><div><b><img src="/max-logo.svg" alt="" width="285" height="100" /></b><i/><i/><i/></div><span>RELATIONSHIPS<br/>COMPOUND HERE</span></div>
     </header>
 
     <section className="about-statement"><div className="shell" data-about-reveal><span>01 / OUR POINT OF VIEW</span><h2>Acquisition creates attention.<br/><em>Retention creates enterprise value.</em></h2><p>We started RetentionMax because the most important customer work often sits between teams, tools and channels. Our job is to connect it into one operating system that learns.</p></div></section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="founder-top"><span>{founder.n} / CO-FOUNDER</span><i>↗</i></div>
           <div className="founder-portrait"><div className="founder-orbit" aria-hidden="true"><i/><i/></div><img src={founder.photo} alt={founder.name} width="230" height="230" /><span className="founder-pop pop-one" aria-hidden="true">CO-FOUNDER</span><span className="founder-pop pop-two" aria-hidden="true">{founder.pop}</span></div>
           <div className="founder-copy"><small>{founder.role.toUpperCase()}</small><h3>{founder.name}</h3><p>{founder.tagline.href?<a href={founder.tagline.href} target="_blank" rel="noreferrer">{founder.tagline.text} <span>↗</span></a>:founder.tagline.text}</p><ul>{founder.points.map(point=><li key={point}>{point}</li>)}</ul></div>
-          <div className="founder-brands"><span>WORKED WITH</span><img src={founder.brands} alt={founder.brandsAlt} /></div>
+          <div className="founder-brands"><span>WORKED WITH</span><div className="brands-strip"><div>{[0,1,2,3].map(copy=><img key={copy} src={founder.brands} alt={copy?"":founder.brandsAlt} aria-hidden={copy>0} loading="lazy" />)}</div></div></div>
         </article>)}
       </div>
     </section>

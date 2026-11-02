@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import MaxApproach from "./MaxApproach";
 import RetentionChat from "./RetentionChat";
 
 function Starfield() {
@@ -145,7 +146,12 @@ const processSteps = [
   { n: "03", name: "Deploy", desc: "Build, test and launch the connected experience.", detail: "We turn the blueprint into production-ready flows, campaigns and measurement.", output: "Live retention system", duration: "WEEKS 03–04", bars: [35, 64, 94] },
   { n: "04", name: "Compound", desc: "Measure, learn and improve every cycle.", detail: "A continuous testing rhythm converts customer behavior into stronger performance.", output: "Growth cadence", duration: "ONGOING", bars: [78, 91, 63] },
 ];
-const integrations = ["KLAVIYO", "SHOPIFY", "GUPSHUP", "CLEVERTAP", "MOENGAGE", "RAZORPAY"];
+const integrations = ["BIK", "BITESPEED", "CLEVERTAP", "MOENGAGE", "WEBENGAGE", "OMNISEND", "KLAVIYO", "BREVO", "BUSINESS ON BOTS", "KWIK ENGAGE", "SHOPIFY", "CONVERT WAY", "INTERAKT"];
+const integrationsReversed = integrations.slice().reverse();
+
+// Switched off for now at the client's request. Set to true to bring a section back.
+const SHOW_WORK = false;
+const SHOW_MASTERCLASS = false;
 
 function Arrow() { return <span aria-hidden="true">↗</span>; }
 
@@ -306,7 +312,7 @@ export default function Home() {
         <a className="logo" href="#top" aria-label="RetentionMax home"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a>
         <button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle navigation">MENU</button>
         <div className={`links ${menu ? "open" : ""}`}>
-          <a href="/services">Services</a><a href="/about">About</a><a href="#work">Work</a><a href="#process">Process</a>
+          <a href="/services">Services</a><a href="/about">About</a><a href="#process">Process</a>
         </div>
         <a href="#audit" className="nav-cta">Free retention audit <Arrow /></a>
       </nav>
@@ -321,18 +327,11 @@ export default function Home() {
           <div className="orbit orbit-two"><b className="channel c-sms">···<small>SMS</small></b><b className="channel c-push">↗<small>WEB PUSH</small></b></div>
           <div className="engine">
             <span className="engine-ring one" /><span className="engine-ring two" />
-            <div className="engine-core"><i>R</i><small>RETENTION<br />ENGINE</small></div>
+            <div className="engine-core"><img src="/max-logo.svg" alt="Max" width="285" height="100" /><small>APPROACH</small></div>
           </div>
           <div className="pulse p1" /><div className="pulse p2" />
         </div>
         <div className="hero-foot"><span>SCROLL TO BUILD THE LIFECYCLE</span><span>01 — 05</span></div>
-      </section>
-
-      <section className="signal">
-        <div className="signal-cell"><b>+37%</b><span>Repeat purchase rate</span></div>
-        <div className="signal-cell"><b>4.8×</b><span>Average campaign ROI</span></div>
-        <div className="signal-cell"><b>−24%</b><span>Customer churn</span></div>
-        <p>Illustrative performance indicators.<br />Actual results vary by brand.</p>
       </section>
 
       <div className="ribbon-stage" aria-label="Retention channels and lifecycle">
@@ -340,7 +339,7 @@ export default function Home() {
         <div className="marquee diagonal lime-band"><div>{["FIRST PURCHASE","ENGAGEMENT","REPEAT PURCHASE","LOYALTY","REVENUE GROWTH","FIRST PURCHASE"].map((x,i)=><span key={i}>{x} → </span>)}</div></div>
       </div>
 
-      <section className="manifest shell" id="approach" ref={manifest}>
+      <section className="manifest shell" ref={manifest}>
         <span className="section-no">02 / THE SHIFT</span>
         <h2>
           <span className="manifest-line">Acquisition gets the first sale.</span>
@@ -354,7 +353,6 @@ export default function Home() {
           <div className="services-title shell">
             <span className="section-no">03 / WHAT WE BUILD</span>
             <h2>One connected<br /><em>retention system.</em></h2>
-            <p>Scroll to move through the channels, intelligence and automation that turn customer signals into lasting growth.</p>
           </div>
           <div className="service-track" ref={servicesTrack}>
             {services.map((service, index) => (
@@ -389,12 +387,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="metrics shell">
-        <div><span>WE OPTIMIZE FOR</span><h2>Growth that gets<br /><em>stronger</em> over time.</h2></div>
-        <div className="metric"><b>02</b><p>The second purchase is the moment acquisition becomes a relationship.</p></div>
-        <div className="metric"><b>∞</b><p>Customer value compounds when journeys keep learning.</p></div>
-      </section>
+      <MaxApproach />
 
+      {SHOW_WORK && (
       <section className="work shell" id="work" ref={workSection}>
         <div className="section-head row"><div><span className="section-no">05 / SELECTED OUTCOMES</span><h2>Retention in<br />the real world.</h2></div><p>Selected illustrative case-study content.<br />Replace with verified CMS data before publishing claims.</p></div>
         <div className="case-grid">
@@ -408,10 +403,11 @@ export default function Home() {
           </article>)}
         </div>
       </section>
+      )}
 
       <section className="why" ref={whySection}>
         <div className="shell why-grid"><div className="why-intro"><span className="section-no">06 / WHY RETENTIONMAX</span><h2>Strategy that sees<br />the whole customer.</h2>
-          <div className="why-visual" aria-hidden="true"><div className="why-orbit"><i/><i/><i/></div><b>R</b><span className="why-pop pop-order">02 / REPEAT ORDER</span><span className="why-pop pop-ltv">LTV ↗</span><span className="why-pop pop-signal">LIVE SIGNAL</span></div>
+          <div className="why-visual" aria-hidden="true"><div className="why-orbit"><i/><i/><i/></div><b><img src="/max-logo.svg" alt="" width="285" height="100" /></b><span className="why-pop pop-order">02 / REPEAT ORDER</span><span className="why-pop pop-ltv">LTV ↗</span><span className="why-pop pop-signal">LIVE SIGNAL</span></div>
         </div>
           <div className="reasons">{[["01","◎","Channel agnostic","We choose the right moment and medium, not a favorite tool."],["02","↗","Commercially grounded","Every journey connects to repeat rate, margin or lifetime value."],["03","✦","Built to learn","A testing rhythm turns customer behavior into your advantage."]].map((r,i)=><article key={r[0]} style={{"--reason-delay":`${i * 150}ms`} as React.CSSProperties}><span>{r[0]}</span><b className="reason-icon">{r[1]}</b><div><h3>{r[2]}</h3><p>{r[3]}</p></div></article>)}</div>
         </div>
@@ -434,11 +430,12 @@ export default function Home() {
         <span>PLUGS INTO YOUR STACK</span>
         <div className="logo-ribbons" aria-label="Technology integrations">
           <div className="logo-ribbon ribbon-lime"><div>{integrations.concat(integrations).map((x,i)=><b key={i}><i>◉</i>{x}</b>)}</div></div>
-          <div className="logo-ribbon ribbon-pink"><div>{integrations.slice().reverse().concat(integrations).map((x,i)=><b key={i}><i>✦</i>{x}</b>)}</div></div>
+          <div className="logo-ribbon ribbon-pink"><div>{integrationsReversed.concat(integrationsReversed).map((x,i)=><b key={i}><i>✦</i>{x}</b>)}</div></div>
           <div className="logo-ribbon ribbon-blue"><div>{integrations.concat(integrations).map((x,i)=><b key={i}><i>◎</i>{x}</b>)}</div></div>
         </div>
       </section>
 
+      {SHOW_MASTERCLASS && (
       <section className="masterclass shell" id="masterclass">
         <div className="course-art"><div className="course-orbit">RETENTION • REVENUE • RELATIONSHIPS •</div><b>R<span>M</span></b></div>
         <div className="course-copy"><span className="section-no">FREE MASTERCLASS / 38 MIN</span><h2>Why your customers<br />don’t come back.</h2><p>Learn the five lifecycle gaps quietly costing D2C brands repeat revenue—and the practical framework we use to fix them.</p>
@@ -446,10 +443,11 @@ export default function Home() {
           <a className="button light" href="#audit">Get free access <Arrow /></a>
         </div>
       </section>
+      )}
 
       <section className="testimonial shell">
         <span className="quote">“</span><blockquote>RetentionMax helped us stop thinking in campaigns and start thinking in customer journeys.</blockquote>
-        <div><b>NAYAN SHAH</b></div>
+        <div><b>NAYAN SHAH</b><span>CO-FOUNDER, PETCHEF</span><img src="/petchef-logo.png" alt="PetChef" width="320" height="96" loading="lazy" /></div>
       </section>
 
       <section className="audit" id="audit">
@@ -458,7 +456,7 @@ export default function Home() {
             <div className="form-row"><label>Name *<input name="name" required minLength={2} placeholder="Your name" /></label><label>Company *<input name="company" required placeholder="Brand name" /></label></div>
             <div className="form-row"><label>Work email *<input name="email" type="email" required placeholder="you@company.com" /></label><label>Phone number *<input name="phone" required minLength={7} placeholder="+91 98765 43210" /></label></div>
             <label>Website URL *<input name="website" type="url" required placeholder="https://yourbrand.com" /></label>
-            <div className="form-row"><label>Monthly order volume *<select name="orderVolume" required defaultValue=""><option value="" disabled>Select range</option><option>Under 1,000</option><option>1,000–5,000</option><option>5,000–20,000</option><option>20,000+</option></select></label><label>Existing platforms<input name="platforms" placeholder="Klaviyo, Shopify…" /></label></div>
+            <div className="form-row"><label>Monthly order volume *<select name="orderVolume" required defaultValue=""><option value="" disabled>Select range</option><option>Under 1,000</option><option>1,000–5,000</option><option>5,000–20,000</option><option>20,000+</option></select></label><label>Existing platforms<input name="platforms" placeholder="Klaviyo, Bik, CleverTap, Bitespeed…" /></label></div>
             <label>Primary retention challenge *<textarea name="challenge" required minLength={10} placeholder="What’s keeping customers from coming back?" /></label>
             <label className="consent"><input type="checkbox" name="consent" value="true" required /> I agree to be contacted about my retention audit and accept the privacy policy.</label>
             <button className="button lime submit" disabled={sending}>{sending ? "Building your audit…" : "Get my free audit"} <Arrow /></button>

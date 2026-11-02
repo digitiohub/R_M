@@ -28,7 +28,7 @@ export default function ServicesPage() {
     <nav className="nav shell">
       <a className="logo" href="/" aria-label="RetentionMax home"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a>
       <button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle navigation">MENU</button>
-      <div className={`links ${menu ? "open" : ""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#work">Work</a><a href="/#process">Process</a></div>
+      <div className={`links ${menu ? "open" : ""}`}><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a></div>
       <a href="/#audit" className="nav-cta">Free retention audit <span aria-hidden="true">↗</span></a>
     </nav>
 
