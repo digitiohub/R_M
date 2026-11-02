@@ -116,13 +116,13 @@ function Starfield() {
 }
 
 const services = [
-  { n: "01", name: "Email Marketing", desc: "Lifecycle email that feels personal at scale—from a considered welcome to the perfectly timed win-back.", metric: "Lifecycle orchestration", tag: "EMAIL" },
-  { n: "02", name: "WhatsApp Marketing", desc: "High-intent conversations, automated thoughtfully around purchases, replenishment and support.", metric: "Conversational growth", tag: "WA" },
-  { n: "03", name: "SMS Campaigns", desc: "Concise, well-timed messages built for urgency without eroding customer trust.", metric: "Timely conversion", tag: "SMS" },
-  { n: "04", name: "Web Push", desc: "Bring known customers back with contextual reminders that complement—not compete with—your channels.", metric: "Re-engagement layer", tag: "PUSH" },
-  { n: "05", name: "Segmentation", desc: "Turn behavioral and purchase data into living audiences your team can actually activate.", metric: "Sharper relevance", tag: "DATA" },
-  { n: "06", name: "Automation", desc: "A connected journey system that reacts to what each customer does next.", metric: "Always-on journeys", tag: "FLOW" },
-  { n: "07", name: "Retention Analytics", desc: "See what creates the second order, increases lifetime value and compounds over time.", metric: "Clear attribution", tag: "LTV" },
+  { n: "01", name: "Email Marketing", icon: "/service-icons/email.svg", desc: "Lifecycle email that feels personal at scale—from a considered welcome to the perfectly timed win-back.", metric: "Lifecycle orchestration", tag: "EMAIL" },
+  { n: "02", name: "WhatsApp Marketing", icon: "/service-icons/whatsapp.svg", desc: "High-intent conversations, automated thoughtfully around purchases, replenishment and support.", metric: "Conversational growth", tag: "WA" },
+  { n: "03", name: "SMS Campaigns", icon: "/service-icons/sms.svg", desc: "Concise, well-timed messages built for urgency without eroding customer trust.", metric: "Timely conversion", tag: "SMS" },
+  { n: "04", name: "Web Push", icon: "/service-icons/push.svg", desc: "Bring known customers back with contextual reminders that complement—not compete with—your channels.", metric: "Re-engagement layer", tag: "PUSH" },
+  { n: "05", name: "Segmentation", icon: "/service-icons/segmentation.svg", desc: "Turn behavioral and purchase data into living audiences your team can actually activate.", metric: "Sharper relevance", tag: "DATA" },
+  { n: "06", name: "Automation", icon: "/service-icons/automation.svg", desc: "A connected journey system that reacts to what each customer does next.", metric: "Always-on journeys", tag: "FLOW" },
+  { n: "07", name: "Retention Analytics", icon: "/service-icons/analytics.svg", desc: "See what creates the second order, increases lifetime value and compounds over time.", metric: "Clear attribution", tag: "LTV" },
 ];
 
 const cases = [
@@ -357,7 +357,7 @@ export default function Home() {
           <div className="service-track" ref={servicesTrack}>
             {services.map((service, index) => (
               <article className={`service-card service-card-${index + 1}`} key={service.name}>
-                <div className="service-card-art"><i/><i/><i/><b>{service.tag}</b></div>
+                <div className="service-card-art"><i/><i/><i/><span className="service-card-icon"><img src={service.icon} alt="" width="24" height="24" /></span><b>{service.tag}</b></div>
                 <span className="service-kicker">{service.metric}</span>
                 <h3>{service.name}</h3>
                 <p>{service.desc}</p>
