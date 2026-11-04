@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { matchFaq } from "./content/faq";
 
 type Message = { id: number; from: "bot" | "user"; text: string; feedback?: "up" | "down" };
 type Profile = { name?: string; email?: string; phone?: string; consent?: boolean };
@@ -20,6 +21,8 @@ const serviceChoices = [
 
 function answerFor(input: string, name?: string) {
   const q = input.toLowerCase();
+  const approved = matchFaq(input);
+  if (approved) return approved.answer;
   if (/hello|hi|hey/.test(q)) return `Hi${name ? ` ${name}` : ""}! What would you like to improve: repeat purchases, lifecycle automation, or customer lifetime value?`;
   if (/recommend|which service|help my brand/.test(q)) return "The right starting point depends on the problem: choose Email for lifecycle depth, WhatsApp for high-intent conversations, SMS for urgency, Web Push for re-engagement, Segmentation when targeting is weak, Automation when journeys are disconnected, and Analytics when attribution is unclear. A retention audit can prioritize the best combination.";
   if (/email/.test(q)) return "Email Marketing: we design welcome, browse/cart recovery, post-purchase, replenishment, cross-sell, loyalty, and win-back journeys. Each program includes segmentation, creative testing, and measurement against repeat purchase rate and lifetime value.";

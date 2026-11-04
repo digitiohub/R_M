@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import RetentionChat from "../RetentionChat";
+import Footer from "../Footer";
 
 const serviceDetails = [
   { n:"01", slug:"email", tag:"EMAIL", icon:"/service-icons/email.svg", name:"Email Marketing", line:"Lifecycle depth, delivered personally.", desc:"We build email systems that welcome, educate, convert and win customers back—using behavior, purchase history and timing to make every message more relevant.", deliverables:["Lifecycle strategy","Flow architecture","Campaign calendar","Creative direction"], metrics:["Repeat rate","Revenue per recipient","Flow contribution"], color:"violet" },
@@ -54,7 +55,7 @@ export default function ServicesPage() {
     </section>
 
     <section className="services-close"><div className="shell" data-reveal><span>NOT SURE WHERE TO START?</span><h2>Start with the customer.<br/><em>We’ll map the system.</em></h2><p>A focused retention audit will identify the clearest opportunities across your lifecycle, channels and data.</p><a href="/#audit">Get your free retention audit <span>↗</span></a></div></section>
-    <footer><div className="shell footer-top"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+    <Footer />
     <RetentionChat />
   </main>;
 }

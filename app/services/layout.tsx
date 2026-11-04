@@ -7,8 +7,20 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/services" },
-  openGraph: { title, description, type: "website", url: "/services", siteName: "RetentionMax", images: ["/og.png"] },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  openGraph: { title, description, type: "website", url: "/services", siteName: "RetentionMax", images: ["/og.jpg"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og.jpg"] },
 };
 
-export default function ServicesLayout({ children }: Readonly<{ children: React.ReactNode }>) { return children; }
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.retentionmax.in/" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.retentionmax.in/services" },
+  ],
+};
+
+export default function ServicesLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} /></>;
+}
+

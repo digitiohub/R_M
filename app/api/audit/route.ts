@@ -41,13 +41,15 @@ async function emailLead(lead: Lead) {
 export async function POST(request: Request) {
   try {
     const b = await request.json() as Record<string, string>;
+    // Accept "brand.com" as well as "https://brand.com".
+    if (typeof b.website === "string" && b.website.trim() && !urlPattern.test(b.website.trim())) b.website = `https://${b.website.trim()}`;
     const required = ["name","company","email","phone","website","orderVolume","challenge"];
+    if (b.consent !== "true") return Response.json({ error: "Please tick the consent box to continue." }, { status: 400 });
     if (required.some(k => !b[k]?.trim())) return Response.json({ error: "Please complete every required field." }, { status: 400 });
     if (!emailPattern.test(b.email)) return Response.json({ error: "Please enter a valid work email." }, { status: 400 });
-    if (!urlPattern.test(b.website)) return Response.json({ error: "Website must begin with http:// or https://." }, { status: 400 });
+    if (!urlPattern.test(b.website) || !URL.canParse(b.website)) return Response.json({ error: "Please enter a valid website, for example yourbrand.com." }, { status: 400 });
     if (b.phone.replace(/\D/g,"").length < 7) return Response.json({ error: "Please enter a valid phone number." }, { status: 400 });
-    if (b.consent !== "true") return Response.json({ error: "Consent is required." }, { status: 400 });
-    const lead: Lead = {
+        const lead: Lead = {
       name: b.name.trim(), company: b.company.trim(), email: b.email.trim().toLowerCase(), phone: b.phone.trim(),
       website: b.website.trim(), orderVolume: b.orderVolume, platforms: b.platforms?.trim() || "", challenge: b.challenge.trim(),
     };

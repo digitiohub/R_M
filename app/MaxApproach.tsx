@@ -122,7 +122,7 @@ function Legend({ items, className = '' }: { items: [string, string][]; classNam
   return (
     <ul className={`flex flex-wrap gap-x-3 gap-y-1 ${className}`}>
       {items.map(([label, color]) => (
-        <li key={label} className="flex items-center gap-1.5 text-[9.5px]" style={{ color: C.dim }}>
+        <li key={label} className="flex items-center gap-1.5 text-[10px]" style={{ color: C.dim }}>
           <Dot color={color} />
           {label}
         </li>
@@ -135,7 +135,7 @@ function Rank({ n, color = C.purple, small = false }: { n: number; color?: strin
   return (
     <span
       className={`grid shrink-0 place-items-center rounded-full font-bold leading-none text-white ${
-        small ? 'h-[14px] w-[14px] text-[8.5px]' : 'h-[17px] w-[17px] text-[9.5px]'
+        small ? 'h-[14px] w-[14px] text-[10px]' : 'h-[17px] w-[17px] text-[10px]'
       }`}
       style={{ background: color }}
     >
@@ -198,7 +198,7 @@ function Donut({ segments, center, sub }: { segments: [number, string][]; center
         >
           {center}
         </p>
-        <p className="mt-1 text-[9px] leading-none" style={{ color: C.dim }}>
+        <p className="mt-1 text-[10px] leading-none" style={{ color: C.dim }}>
           {sub}
         </p>
       </div>
@@ -279,7 +279,7 @@ function Lines({ series, height = 84, dots = false, area = false }: { series: [n
 
 function MonthAxis({ months = MONTHS }: { months?: string[] }) {
   return (
-    <div className="mt-1.5 flex justify-between text-[9px]" style={{ color: C.faint }}>
+    <div className="mt-1.5 flex justify-between text-[10px]" style={{ color: C.faint }}>
       {months.map((m) => (
         <span key={m}>{m}</span>
       ))}
@@ -314,7 +314,7 @@ function ColumnAxis({ labels }: { labels: string[] }) {
       {labels.map((l) => (
         <span key={l} className="relative h-[10px] min-w-0 flex-1">
           <span
-            className="absolute left-1/2 top-0 -translate-x-1/2 whitespace-nowrap text-[8px] leading-none"
+            className="absolute left-1/2 top-0 -translate-x-1/2 whitespace-nowrap text-[10px] leading-none"
             style={{ color: C.faint }}
           >
             {l}
@@ -358,7 +358,7 @@ function Funnel() {
       </svg>
       <ul className="flex min-w-0 flex-1 flex-col justify-around">
         {FUNNEL.map(([label, share]) => (
-          <li key={label} className="flex items-center justify-between gap-2 text-[9.5px]">
+          <li key={label} className="flex items-center justify-between gap-2 text-[10px]">
             <span className="leading-tight" style={{ color: C.dim }}>
               {label}
             </span>
@@ -490,7 +490,7 @@ function RetentionAnalytics() {
         <Card title="Top Product Categories by Revenue">
           <ul className="flex flex-1 flex-col justify-between gap-2">
             {CATEGORIES.map(([label, share], i) => (
-              <li key={label} className="flex items-center gap-2 text-[9.5px]">
+              <li key={label} className="flex items-center gap-2 text-[10px]">
                 <span className="w-[58px] shrink-0 leading-tight" style={{ color: C.dim }}>
                   {label}
                 </span>
@@ -534,7 +534,7 @@ function RetentionAnalytics() {
         <Card title="Shopper Type Trend">
           <ul className="flex flex-1 flex-col justify-around gap-2.5">
             {SHOPPERS.map(([label, share], i) => (
-              <li key={label} className="flex items-center gap-2 text-[9.5px]">
+              <li key={label} className="flex items-center gap-2 text-[10px]">
                 <span className="w-[62px] shrink-0 leading-tight" style={{ color: C.dim }}>
                   {label}
                 </span>
@@ -568,7 +568,7 @@ function RetentionAnalytics() {
             </div>
             <ul className="flex min-w-0 flex-1 flex-col gap-1.5">
               {RFM.map(([label, share, color]) => (
-                <li key={label} className="flex items-center gap-1 text-[8.5px]">
+                <li key={label} className="flex items-center gap-1 text-[10px]">
                   <span
                     aria-hidden
                     className="h-[6px] w-[6px] shrink-0 rounded-[2px]"
@@ -638,7 +638,7 @@ function RankedList({ rows, gap = 'gap-2', small = false }: { rows: [string, str
       {rows.map(([label, value], i) => (
         <li
           key={label}
-          className={`flex items-center gap-1.5 ${small ? 'text-[8.5px]' : 'text-[9.5px]'}`}
+          className={`flex items-center gap-1.5 ${small ? 'text-[10px]' : 'text-[10px]'}`}
         >
           <Rank n={i + 1} small={small} />
           <span className="min-w-0 flex-1 leading-tight" style={{ color: C.dim }}>
@@ -684,7 +684,7 @@ function CampaignDashboard() {
         <Card title="Verbiage Analysis" className="!p-2.5">
           <ul className="flex flex-1 flex-col justify-between gap-2">
             {VERBIAGE.map(([label, lift], i) => (
-              <li key={label} className="flex items-center gap-1.5 text-[9px]">
+              <li key={label} className="flex items-center gap-1.5 text-[10px]">
                 <span className="w-[40px] shrink-0 leading-tight" style={{ color: C.dim }}>
                   {label}
                 </span>
@@ -971,7 +971,7 @@ export default function MaxApproach() {
       className="max-approach relative overflow-hidden border-y"
       style={{
         borderColor: C.line,
-        background: `radial-gradient(1200px 500px at 12% 0%, rgb(40 80 255 / 0.18), transparent 60%), radial-gradient(900px 500px at 90% 100%, rgb(60 90 255 / 0.12), transparent 60%), ${C.ground}`,
+        background: `radial-gradient(1200px 500px at 12% 0%, rgb(40 80 255 / 0.18), transparent 60%), radial-gradient(900px 500px at 90% 100%, rgb(60 90 255 / 0.12), transparent 60%), var(--bg)`,
       }}
     >
       <div className="mx-auto max-w-[1760px] px-5 py-12 sm:px-8 md:py-16">

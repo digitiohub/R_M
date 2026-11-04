@@ -1,8 +1,12 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { Fragment, FormEvent, useEffect, useRef, useState } from "react";
 import MaxApproach from "./MaxApproach";
 import RetentionChat from "./RetentionChat";
+import Footer from "./Footer";
+import TestimonialSlider from "./TestimonialSlider";
+import RewardsSection from "./RewardsSection";
+import { testimonials } from "./content/site";
 
 function Starfield() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -158,7 +162,7 @@ function Arrow() { return <span aria-hidden="true">↗</span>; }
 export default function Home() {
   const [menu, setMenu] = useState(false);
   const [sending, setSending] = useState(false);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState<{ kind: "ok" | "error"; text: string } | null>(null);
   const engine = useRef<HTMLDivElement>(null);
   const manifest = useRef<HTMLElement>(null);
   const servicesSection = useRef<HTMLElement>(null);
@@ -291,17 +295,27 @@ export default function Home() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSending(true); setResult("");
+    if (sending) return;
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
+    // Native `required` can be bypassed (and older browsers skip it), so enforce the consent tick here too.
+    const consent = form.elements.namedItem("consent") as HTMLInputElement;
+    if (!consent.checked) {
+      consent.setCustomValidity("Please tick the box to agree before submitting.");
+      consent.reportValidity();
+      return;
+    }
+    setSending(true); setResult(null);
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    // Accept "brand.com" as well as "https://brand.com"
+    if (data.website && !/^https?:\/\//i.test(data.website.trim())) data.website = `https://${data.website.trim()}`;
     try {
       const res = await fetch("/api/audit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const json = await res.json() as { error?: string };
+      const json = await res.json().catch(() => ({})) as { error?: string };
       if (!res.ok) throw new Error(json.error || "Please check your details.");
-      setResult("You’re in. We’ll review your retention journey and reply within two business days.");
+      setResult({ kind: "ok", text: "You’re in. We’ll review your retention journey and reply within two business days." });
       form.reset();
     } catch (err) {
-      setResult(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setResult({ kind: "error", text: err instanceof Error ? err.message : "Something went wrong. Please try again." });
     } finally { setSending(false); }
   }
 
@@ -335,8 +349,8 @@ export default function Home() {
       </section>
 
       <div className="ribbon-stage" aria-label="Retention channels and lifecycle">
-        <div className="marquee diagonal purple"><div>{["EMAIL MARKETING","WHATSAPP","SMS","WEB PUSH","SEGMENTATION","AUTOMATION","EMAIL MARKETING","WHATSAPP"].map((x,i)=><span key={i}>{x} ✦ </span>)}</div></div>
-        <div className="marquee diagonal lime-band"><div>{["FIRST PURCHASE","ENGAGEMENT","REPEAT PURCHASE","LOYALTY","REVENUE GROWTH","FIRST PURCHASE"].map((x,i)=><span key={i}>{x} → </span>)}</div></div>
+        <div className="marquee diagonal purple"><div>{Array.from({length:4},()=>["EMAIL MARKETING","WHATSAPP","SMS","WEB PUSH","SEGMENTATION","AUTOMATION"]).flat().map((x,i)=><span key={i}>{x} ✦ </span>)}</div></div>
+        <div className="marquee diagonal lime-band"><div>{Array.from({length:4},()=>["FIRST PURCHASE","ENGAGEMENT","REPEAT PURCHASE","LOYALTY","REVENUE GROWTH"]).flat().map((x,i)=><span key={i}>{x} → </span>)}</div></div>
       </div>
 
       <section className="manifest shell" ref={manifest}>
@@ -413,25 +427,27 @@ export default function Home() {
         </div>
       </section>
 
+      <RewardsSection />
+
       <section className="process shell" id="process" ref={processSection}>
         <div className="section-head"><span className="section-no">07 / HOW IT WORKS</span><h2>From signal<br />to system.</h2></div>
         <p className="process-intro">A practical path from scattered customer signals to an always-improving retention engine.</p>
-        <div className="steps">{processSteps.map((step,i)=><article key={step.n} tabIndex={0} style={{"--step-delay":`${i * 130}ms`} as React.CSSProperties}>
+        <div className="steps">{processSteps.map((step,i)=><Fragment key={step.n}><article tabIndex={0} style={{"--step-delay":`${i * 130}ms`} as React.CSSProperties}>
           <div className="step-top"><b>{step.n}</b><span>{step.duration}</span></div>
           <div className="step-line"><i style={{"--progress":`${(i+1)*25}%`} as React.CSSProperties}/></div>
           <div className="step-chart" aria-hidden="true">{step.bars.map((bar,j)=><i key={j} style={{"--bar":`${bar}%`,"--bar-delay":`${i * 130 + j * 90}ms`} as React.CSSProperties}/>)}</div>
           <h3>{step.name}</h3><p>{step.desc}</p>
           <div className="step-detail"><span>WHAT YOU GET</span><p>{step.detail}</p><b>{step.output}<i>↗</i></b></div>
           <small>HOVER OR FOCUS FOR DETAILS</small>
-        </article>)}</div>
+        </article>{i < processSteps.length - 1 && <span className="flow-link" aria-hidden="true" style={{"--step-delay":`${i * 130 + 260}ms`} as React.CSSProperties}><i/></span>}</Fragment>)}</div>
       </section>
 
       <section className="integration">
         <span>PLUGS INTO YOUR STACK</span>
         <div className="logo-ribbons" aria-label="Technology integrations">
-          <div className="logo-ribbon ribbon-lime"><div>{integrations.concat(integrations).map((x,i)=><b key={i}><i>◉</i>{x}</b>)}</div></div>
-          <div className="logo-ribbon ribbon-pink"><div>{integrationsReversed.concat(integrationsReversed).map((x,i)=><b key={i}><i>✦</i>{x}</b>)}</div></div>
-          <div className="logo-ribbon ribbon-blue"><div>{integrations.concat(integrations).map((x,i)=><b key={i}><i>◎</i>{x}</b>)}</div></div>
+          <div className="logo-ribbon ribbon-lime"><div>{integrations.concat(integrations, integrations, integrations).map((x,i)=><b key={i}><i>◉</i>{x}</b>)}</div></div>
+          <div className="logo-ribbon ribbon-pink"><div>{integrationsReversed.concat(integrationsReversed, integrationsReversed, integrationsReversed).map((x,i)=><b key={i}><i>✦</i>{x}</b>)}</div></div>
+          <div className="logo-ribbon ribbon-blue"><div>{integrations.concat(integrations, integrations, integrations).map((x,i)=><b key={i}><i>◎</i>{x}</b>)}</div></div>
         </div>
       </section>
 
@@ -445,28 +461,25 @@ export default function Home() {
       </section>
       )}
 
-      <section className="testimonial shell">
-        <span className="quote">“</span><blockquote>RetentionMax helped us stop thinking in campaigns and start thinking in customer journeys.</blockquote>
-        <div><b>NAYAN SHAH</b><span>CO-FOUNDER, PETCHEF</span><img src="/petchef-logo.png" alt="PetChef" width="320" height="96" loading="lazy" /></div>
-      </section>
+      <TestimonialSlider items={testimonials} />
 
       <section className="audit" id="audit">
         <div className="shell audit-grid"><div className="audit-copy"><span className="section-no">09 / FREE RETENTION AUDIT</span><h2>Find the revenue<br />already in your<br /><em>customer base.</em></h2><p>We’ll assess your lifecycle, identify missed retention opportunities and share the clearest next moves. No generic deck. No hard sell.</p><div className="audit-badge"><b>FREE</b><span>Personalized<br />retention teardown</span></div></div>
           <form onSubmit={submit}>
-            <div className="form-row"><label>Name *<input name="name" required minLength={2} placeholder="Your name" /></label><label>Company *<input name="company" required placeholder="Brand name" /></label></div>
-            <div className="form-row"><label>Work email *<input name="email" type="email" required placeholder="you@company.com" /></label><label>Phone number *<input name="phone" required minLength={7} placeholder="+91 98765 43210" /></label></div>
-            <label>Website URL *<input name="website" type="url" required placeholder="https://yourbrand.com" /></label>
+            <div className="form-row"><label>Name *<input name="name" required minLength={2} autoComplete="name" placeholder="Your name" /></label><label>Company *<input name="company" required placeholder="Brand name" /></label></div>
+            <div className="form-row"><label>Work email *<input name="email" type="email" required autoComplete="email" placeholder="you@company.com" /></label><label>Phone number *<input name="phone" type="tel" required minLength={7} maxLength={20} pattern="[0-9+\(\)\-\s]{7,20}" title="Enter a valid phone number" autoComplete="tel" placeholder="+91 98765 43210" /></label></div>
+            <label>Website URL *<input name="website" type="text" inputMode="url" autoComplete="url" required pattern="(https?://)?([A-Za-z0-9\-]+\.)+[A-Za-z]{2,}([\/?#].*)?" title="Enter your website, for example yourbrand.com" placeholder="https://yourbrand.com" /></label>
             <div className="form-row"><label>Monthly order volume *<select name="orderVolume" required defaultValue=""><option value="" disabled>Select range</option><option>Under 1,000</option><option>1,000–5,000</option><option>5,000–20,000</option><option>20,000+</option></select></label><label>Existing platforms<input name="platforms" placeholder="Klaviyo, Bik, CleverTap, Bitespeed…" /></label></div>
             <label>Primary retention challenge *<textarea name="challenge" required minLength={10} placeholder="What’s keeping customers from coming back?" /></label>
-            <label className="consent"><input type="checkbox" name="consent" value="true" required /> I agree to be contacted about my retention audit and accept the privacy policy.</label>
-            <button className="button lime submit" disabled={sending}>{sending ? "Building your audit…" : "Get my free audit"} <Arrow /></button>
-            <p className="form-result" role="status">{result}</p>
+            <label className="consent"><input type="checkbox" name="consent" value="true" required onChange={e => e.currentTarget.setCustomValidity("")} onInvalid={e => e.currentTarget.setCustomValidity("Please tick the box to agree before submitting.")} /><span>I agree to be contacted about my retention audit and accept the privacy policy. <b className="req">*</b></span></label>
+            <button type="submit" className="button lime submit" disabled={sending}>{sending ? "Building your audit…" : "Get my free audit"} <Arrow /></button>
+            <p className={`form-result ${result?.kind ?? ""}`} role="status" aria-live="polite">{result?.text}</p>
           </form>
         </div>
       </section>
 
       <section className="final-cta shell"><span>READY WHEN YOU ARE</span><h2>Make the next<br />purchase <em>inevitable.</em></h2><a href="#audit" className="round-cta">LET’S GROW <Arrow /></a></section>
-      <footer><div className="shell footer-top"><a className="logo" href="#top"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br />built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="#process">Process</a><a href="#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+      <Footer home />
       <RetentionChat />
     </main>
   );

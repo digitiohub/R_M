@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { faq } from "../../content/site";
 
 const system = `You are the RetentionMax assistant on retentionmax.in. RetentionMax is a customer-retention marketing consultancy that builds connected retention systems across Email, WhatsApp, SMS, Web Push, segmentation, automation and analytics to increase repeat purchases and customer lifetime value.
 
@@ -15,6 +16,11 @@ Facts you can use:
 - To talk to the team, visitors can use the WhatsApp button in this chat or the "Share contact details" option.
 
 Rules: reply in 2-4 short sentences of plain text (no markdown). Only discuss RetentionMax, customer retention and e-commerce marketing; politely decline anything else. Never invent prices, guarantees, case-study numbers or client names. If you don't know, suggest the free audit or contacting the team.`;
+
+// Approved FAQ (content/site.ts). Empty until the approved document is received.
+const faqBlock = faq.length
+  ? "\n\nApproved FAQ. Answer from these when relevant and do not contradict them:\n" + faq.map(f => "Q: " + f.question + "\nA: " + f.answer).join("\n\n")
+  : "";
 
 export async function POST(request: Request) {
   try {
@@ -34,7 +40,7 @@ export async function POST(request: Request) {
       output_config: { effort: "low" },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
-      system,
+      system: system + faqBlock,
       messages: history,
     });
     const reply = response.stop_reason === "refusal" ? "" : response.content.flatMap(b => b.type === "text" ? [b.text] : []).join("").trim();

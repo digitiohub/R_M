@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import RetentionChat from "../RetentionChat";
+import Footer from "../Footer";
 
 const founders = [
   { n:"01", name:"Ganesh Kamble", role:"Co-founder, RetentionMax", photo:"/about/ganesh-kamble.jpg", tagline:{ text:"The_CLTV_Guy · Retention Simplified", href:"https://thecltvguy.retentionmax.in" }, pop:"12+ YRS LIFECYCLE", points:["12+ years in lifecycle and CRM; $10M+ incremental revenue driven","Ex Häfele, Hiranandani, Cox & Kings (ezeego1), Future Group, Accenture (analytics)","CLTV, RFM, cohort and market-basket analytics behind every plan","18 brands including Godrej Properties, MuscleTech India, Mackly"], brands:"/about/ganesh-brands.png", brandsAlt:"ezeego1, Häfele, Sugar, Future Group, Accenture, MuscleTech, Allmax, Mackly", tone:"violet" },
@@ -49,7 +50,7 @@ export default function AboutPage() {
 
     <section className="about-close"><div className="shell" data-about-reveal><span>LET’S BUILD THE SECOND PURCHASE</span><h2>Bring us the customer.<br/><em>We’ll find the opportunity.</em></h2><a href="/#audit">Start with a free audit <span>↗</span></a></div></section>
 
-    <footer><div className="shell footer-top"><a className="logo" href="/"><img src="/retentionmax-logo.png" alt="RetentionMax" width="404" height="176" /></a><p>Customer retention systems for brands<br/>built to last.</p><div><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a><a href="/#audit">Contact</a></div></div><div className="footer-word">RETENTION<span>MAX</span></div><div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div></footer>
+    <Footer />
     <RetentionChat/>
   </main>;
 }
