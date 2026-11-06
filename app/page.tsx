@@ -145,10 +145,10 @@ const lifecycleIcons = [
   { main: "05", badges: ["↗", "LTV"] },
 ];
 const processSteps = [
-  { n: "01", name: "Diagnose", desc: "Audit the data, journeys, creative and economics.", detail: "We identify lifecycle leaks, measurement gaps and the highest-value opportunities.", output: "Opportunity map", duration: "WEEK 01", bars: [48, 72, 38] },
-  { n: "02", name: "Design", desc: "Map the lifecycle and prioritize the biggest levers.", detail: "Every channel, trigger and message gets a clear role in the customer relationship.", output: "Journey blueprint", duration: "WEEK 02", bars: [68, 44, 82] },
-  { n: "03", name: "Deploy", desc: "Build, test and launch the connected experience.", detail: "We turn the blueprint into production-ready flows, campaigns and measurement.", output: "Live retention system", duration: "WEEKS 03–04", bars: [35, 64, 94] },
-  { n: "04", name: "Compound", desc: "Measure, learn and improve every cycle.", detail: "A continuous testing rhythm converts customer behavior into stronger performance.", output: "Growth cadence", duration: "ONGOING", bars: [78, 91, 63] },
+  { n: "01", name: "Diagnose", art: "radar", desc: "Audit the data, journeys, creative and economics.", detail: "We identify lifecycle leaks, measurement gaps and the highest-value opportunities.", output: "Opportunity map", duration: "WEEK 01", bars: [48, 72, 38] },
+  { n: "02", name: "Design", art: "canvas", desc: "Map the lifecycle and prioritize the biggest levers.", detail: "Every channel, trigger and message gets a clear role in the customer relationship.", output: "Journey blueprint", duration: "WEEK 02", bars: [68, 44, 82] },
+  { n: "03", name: "Deploy", art: "rocket", desc: "Build, test and launch the connected experience.", detail: "We turn the blueprint into production-ready flows, campaigns and measurement.", output: "Live retention system", duration: "WEEKS 03–04", bars: [35, 64, 94] },
+  { n: "04", name: "Compound", art: "growth", desc: "Measure, learn and improve every cycle.", detail: "A continuous testing rhythm converts customer behavior into stronger performance.", output: "Growth cadence", duration: "ONGOING", bars: [78, 91, 63] },
 ];
 const integrations = ["BIK", "BITESPEED", "CLEVERTAP", "MOENGAGE", "WEBENGAGE", "OMNISEND", "KLAVIYO", "BREVO", "BUSINESS ON BOTS", "KWIK ENGAGE", "SHOPIFY", "CONVERT WAY", "INTERAKT"];
 const integrationsReversed = integrations.slice().reverse();
@@ -156,6 +156,13 @@ const integrationsReversed = integrations.slice().reverse();
 // Switched off for now at the client's request. Set to true to bring a section back.
 const SHOW_WORK = false;
 const SHOW_MASTERCLASS = false;
+
+function StepArt({ kind }: { kind: string }) {
+  if (kind === "radar") return <><em className="rd-ring r1"/><em className="rd-ring r2"/><em className="rd-ring r3"/><em className="rd-cross"/><em className="rd-beam"/><em className="rd-dot d1"/><em className="rd-dot d2"/><em className="rd-dot d3"/><em className="rd-core"/></>;
+  if (kind === "canvas") return <><em className="ds-canvas"><em className="ds-sun"/><em className="ds-hill"/></em><em className="ds-layer l1"/><em className="ds-type">Aa</em><em className="ds-sw"><em/><em/><em/><em/></em><em className="ds-cursor"/></>;
+  if (kind === "growth") return <><em className="gr-panel p1"><em/><em/></em><em className="gr-panel p2"><em/></em><svg className="gr-svg" viewBox="0 0 200 100" preserveAspectRatio="none"><defs><linearGradient id="grLine" x1="0" x2="1"><stop offset="0" stopColor="#285bff"/><stop offset=".6" stopColor="#9487ff"/><stop offset="1" stopColor="#d8ff3e"/></linearGradient><linearGradient id="grFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9487ff" stopOpacity=".35"/><stop offset="1" stopColor="#9487ff" stopOpacity="0"/></linearGradient></defs><path className="gr-area" d="M10 82 L50 66 L88 72 L128 44 L168 30 L190 16 L190 94 L10 94Z" fill="url(#grFill)"/><path className="gr-line" pathLength="1" d="M10 82 L50 66 L88 72 L128 44 L168 30 L190 16" fill="none" stroke="url(#grLine)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg><em className="gr-pt q1"/><em className="gr-pt q2"/><em className="gr-pt q3"/><em className="gr-pt q4"/><em className="gr-pt q5"/><em className="gr-refresh"><em/></em></>;
+  return <><em className="rk-star s1"/><em className="rk-star s2"/><em className="rk-star s3"/><em className="rk-star s4"/><em className="rk-rocket"><em className="rk-body"/><em className="rk-win"/><em className="rk-fin f1"/><em className="rk-fin f2"/><em className="rk-flame"/></em><em className="rk-pad"/></>;
+}
 
 function Arrow() { return <span aria-hidden="true">↗</span>; }
 
@@ -435,7 +442,7 @@ export default function Home() {
         <div className="steps">{processSteps.map((step,i)=><Fragment key={step.n}><article tabIndex={0} style={{"--step-delay":`${i * 130}ms`} as React.CSSProperties}>
           <div className="step-top"><b>{step.n}</b><span>{step.duration}</span></div>
           <div className="step-line"><i style={{"--progress":`${(i+1)*25}%`} as React.CSSProperties}/></div>
-          <div className="step-chart" aria-hidden="true">{step.bars.map((bar,j)=><i key={j} style={{"--bar":`${bar}%`,"--bar-delay":`${i * 130 + j * 90}ms`} as React.CSSProperties}/>)}</div>
+          <div className={`step-chart${step.art ? ` step-art art-${step.art}` : ""}`} aria-hidden="true">{step.art ? <StepArt kind={step.art} /> : step.bars.map((bar,j)=><i key={j} style={{"--bar":`${bar}%`,"--bar-delay":`${i * 130 + j * 90}ms`} as React.CSSProperties}/>)}</div>
           <h3>{step.name}</h3><p>{step.desc}</p>
           <div className="step-detail"><span>WHAT YOU GET</span><p>{step.detail}</p><b>{step.output}<i>↗</i></b></div>
           <small>HOVER OR FOCUS FOR DETAILS</small>
