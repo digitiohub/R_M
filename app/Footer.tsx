@@ -29,6 +29,8 @@ export default function Footer({ home = false }: { home?: boolean }) {
         <p>Customer retention systems for brands<br />built to last.</p>
         <div><a href="/services">Services</a><a href="/about">About</a><a href={`${prefix}#process`}>Process</a><a href={`${prefix}#audit`}>Contact</a></div>
       </div>
+      <div className="footer-word">RETENTION<span>MAX</span></div>
+      <div className="shell legal"><span>© 2026 RETENTIONMAX</span><span>PRIVACY · TERMS · LINKEDIN</span><span>MADE FOR THE SECOND PURCHASE</span></div>
     </footer>
   );
 }

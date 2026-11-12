@@ -172,8 +172,6 @@ form label{font-size:11px}
 
 /* Footer. The wordmark and the copyright/legal row were removed at the client's request. Social icons sit
    directly under the logo in the left column, in the official brand colours. */
-footer{padding-bottom:20px}/* extra breathing room under the footer */
-.footer-top{padding-bottom:104px}/* room for the fixed chat button so it never covers the last links */
 .footer-top>.footer-brand{display:flex;flex-direction:column;align-items:flex-start;gap:45px;font-size:inherit}
 .footer-top>div:not(.footer-brand){align-content:start}
 .footer-brand .social{display:flex;align-items:center;gap:14px}
@@ -288,3 +286,8 @@ footer{padding-bottom:20px}/* extra breathing room under the footer */
 @keyframes grPt{0%,10%{opacity:0;transform:scale(.4)}25%{opacity:1;transform:scale(1.5)}40%,90%{opacity:1;transform:scale(1)}100%{opacity:0}}
 @keyframes grFloat{50%{transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){.gr-line{stroke-dashoffset:0}.gr-area{opacity:1}.gr-pt{opacity:1}}
+/* Final CTA circle: Max logo on a transparent ring instead of the lime disc */
+.round-cta{background:none;border:1px solid var(--max-disc-ring);color:var(--white);align-content:center;gap:6px;letter-spacing:.14em}
+.round-cta img{width:58%;height:auto}
+/* Footer legal row: leave room on the right for the fixed chat button instead of padding below the footer */
+@media(min-width:901px){.legal{padding-right:220px}}

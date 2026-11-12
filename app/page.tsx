@@ -485,7 +485,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="final-cta shell"><span>READY WHEN YOU ARE</span><h2>Make the next<br />purchase <em>inevitable.</em></h2><a href="#audit" className="round-cta">LET’S GROW <Arrow /></a></section>
+      <section className="final-cta shell"><span>READY WHEN YOU ARE</span><h2>Make the next<br />purchase <em>inevitable.</em></h2><a href="#audit" className="round-cta"><img src="/max-logo.svg" alt="Max" width="285" height="100" /><span>GROWTH <Arrow /></span></a></section>
       <Footer home />
       <RetentionChat />
     </main>
