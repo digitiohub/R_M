@@ -129,6 +129,16 @@ const services = [
   { n: "07", name: "Retention Analytics", icon: "/service-icons/analytics.svg", desc: "See what creates the second order, increases lifetime value and compounds over time.", metric: "Clear attribution", tag: "LTV" },
 ];
 
+const buildServices = [
+  { name: "Email Marketing", icon: "/service-icons/email.svg", tag: "EMAIL", kicker: "EMAIL MARKETING", color: "#d65cff", desc: "Send personalized emails at scale—from a welcome series to perfectly timed win-back." },
+  { name: "WhatsApp Marketing", icon: "/service-icons/whatsapp.svg", tag: "WA", kicker: "CONVERSATIONAL GROWTH", color: "#2db6f5", desc: "High-intent conversations, automated thoughtfully around purchases, replenishment and support." },
+  { name: "SMS Campaigns", icon: "/service-icons/sms.svg", tag: "SMS", kicker: "TIMELY CONVERSION", color: "#f08c28", desc: "Concise, well-timed messages built for urgency without eroding customer trust." },
+  { name: "Web Push", icon: "/service-icons/push.svg", tag: "PUSH", kicker: "RE-ENGAGEMENT LAYER", color: "#5bd12a", desc: "Bring known customers back with that nudge at the right moment." },
+  { name: "Rewards", icon: "/service-icons/rewards.svg", tag: "REWARDS", kicker: "POINTS & PERKS", color: "#f7c61f", desc: "Reward programs that make every purchase feel worth it and bring customers back for more." },
+  { name: "Referrals", icon: "/service-icons/referrals.svg", tag: "REFER", kicker: "WORD-OF-MOUTH GROWTH", color: "#ff6fb0", desc: "Referral incentives that turn happy customers into your most trusted acquisition channel." },
+  { name: "Loyalty", icon: "/service-icons/loyalty.svg", tag: "LOYALTY", kicker: "LONG-TERM RELATIONSHIPS", color: "#ff5a5a", desc: "Loyalty experiences that turn repeat buyers into brand advocates." },
+];
+
 const cases = [
   { type: "Beauty brand", brand: "LUMA", mark: "L", tags: ["SKINCARE", "LIFECYCLE"], signal: "+18% AOV", stat: "42%", label: "customer lifetime value growth", tone: "violet" },
   { type: "Fashion retailer", brand: "FORM", mark: "F", tags: ["APPAREL", "LOYALTY"], signal: "2.4× REPEAT", stat: "35%", label: "increase in repeat purchases", tone: "lime" },
@@ -344,8 +354,8 @@ export default function Home() {
         <p className="hero-copy">RetentionMax builds data-driven journeys across Email, WhatsApp, SMS and Web Push—helping brands grow repeat purchases, customer lifetime value and sustainable revenue.</p>
         <div className="hero-actions"><a className="button lime" href="#audit">Get your free retention audit <Arrow /></a><a className="text-link" href="#approach">Explore our approach ↓</a></div>
         <div className="engine-scene" ref={engine} aria-label="Animated retention growth engine">
-          <div className="orbit orbit-one"><b className="channel c-email">@<small>EMAIL</small></b><b className="channel c-wa">◎<small>WHATSAPP</small></b></div>
-          <div className="orbit orbit-two"><b className="channel c-sms">···<small>SMS</small></b><b className="channel c-push">↗<small>WEB PUSH</small></b></div>
+          <div className="orbit orbit-one"><b className="channel c-email" style={{"--c":"#d65cff"} as React.CSSProperties}><img src="/service-icons/email.svg" alt="" width="30" height="30" /></b><b className="channel c-wa" style={{"--c":"#2db6f5"} as React.CSSProperties}><img src="/service-icons/whatsapp.svg" alt="" width="30" height="30" /></b></div>
+          <div className="orbit orbit-two"><b className="channel c-sms" style={{"--c":"#f08c28"} as React.CSSProperties}><img src="/service-icons/sms.svg" alt="" width="30" height="30" /></b><b className="channel c-push" style={{"--c":"#5bd12a"} as React.CSSProperties}><img src="/service-icons/push.svg" alt="" width="30" height="30" /></b></div>
           <div className="engine">
             <span className="engine-ring one" /><span className="engine-ring two" />
             <div className="engine-core"><img src="/max-logo.svg" alt="Max" width="285" height="100" /><small>APPROACH</small></div>
@@ -376,13 +386,13 @@ export default function Home() {
             <h2>One connected<br /><em>retention system.</em></h2>
           </div>
           <div className="service-track" ref={servicesTrack}>
-            {services.map((service, index) => (
+            {buildServices.map((service, index) => (
               <article className={`service-card service-card-${index + 1}`} key={service.name}>
                 <div className="service-card-art"><i/><i/><i/><span className="service-card-icon"><img src={service.icon} alt="" width="24" height="24" /></span><b>{service.tag}</b></div>
-                <span className="service-kicker">{service.metric}</span>
+                <span className="service-kicker">{service.kicker}</span>
                 <h3>{service.name}</h3>
                 <p>{service.desc}</p>
-                <div className="service-card-foot"><span>{service.tag}</span><b>{service.n}</b></div>
+                <div className="service-card-foot"><span>{service.tag}</span><b>0{index + 1}</b></div>
               </article>
             ))}
           </div>
