@@ -119,21 +119,14 @@ function Starfield() {
   return <canvas ref={canvasRef} className="starfield" aria-hidden="true" />;
 }
 
-const services = [
-  { n: "01", name: "Email Marketing", icon: "/service-icons/email.svg", desc: "Lifecycle email that feels personal at scale—from a considered welcome to the perfectly timed win-back.", metric: "Lifecycle orchestration", tag: "EMAIL" },
-  { n: "02", name: "WhatsApp Marketing", icon: "/service-icons/whatsapp.svg", desc: "High-intent conversations, automated thoughtfully around purchases, replenishment and support.", metric: "Conversational growth", tag: "WA" },
-  { n: "03", name: "SMS Campaigns", icon: "/service-icons/sms.svg", desc: "Concise, well-timed messages built for urgency without eroding customer trust.", metric: "Timely conversion", tag: "SMS" },
-  { n: "04", name: "Web Push", icon: "/service-icons/push.svg", desc: "Bring known customers back with contextual reminders that complement—not compete with—your channels.", metric: "Re-engagement layer", tag: "PUSH" },
-  { n: "05", name: "Segmentation", icon: "/service-icons/segmentation.svg", desc: "Turn behavioral and purchase data into living audiences your team can actually activate.", metric: "Sharper relevance", tag: "DATA" },
-  { n: "06", name: "Automation", icon: "/service-icons/automation.svg", desc: "A connected journey system that reacts to what each customer does next.", metric: "Always-on journeys", tag: "FLOW" },
-  { n: "07", name: "Retention Analytics", icon: "/service-icons/analytics.svg", desc: "See what creates the second order, increases lifetime value and compounds over time.", metric: "Clear attribution", tag: "LTV" },
-];
-
 const buildServices = [
   { name: "Email Marketing", icon: "/service-icons/email.svg", tag: "EMAIL", kicker: "EMAIL MARKETING", color: "#d65cff", desc: "Send personalized emails at scale—from a welcome series to perfectly timed win-back." },
   { name: "WhatsApp Marketing", icon: "/service-icons/whatsapp.svg", tag: "WA", kicker: "CONVERSATIONAL GROWTH", color: "#2db6f5", desc: "High-intent conversations, automated thoughtfully around purchases, replenishment and support." },
   { name: "SMS Campaigns", icon: "/service-icons/sms.svg", tag: "SMS", kicker: "TIMELY CONVERSION", color: "#f08c28", desc: "Concise, well-timed messages built for urgency without eroding customer trust." },
   { name: "Web Push", icon: "/service-icons/push.svg", tag: "PUSH", kicker: "RE-ENGAGEMENT LAYER", color: "#5bd12a", desc: "Bring known customers back with that nudge at the right moment." },
+  { name: "Segmentation", icon: "/service-icons/segmentation.svg", tag: "DATA", kicker: "SHARPER RELEVANCE", desc: "Turn behavioral and purchase data into living audiences your team can actually activate." },
+  { name: "Automation", icon: "/service-icons/automation.svg", tag: "FLOW", kicker: "ALWAYS-ON JOURNEYS", desc: "A connected journey system that reacts to what each customer does next." },
+  { name: "Retention Analytics", icon: "/service-icons/analytics.svg", tag: "LTV", kicker: "CLEAR ATTRIBUTION", desc: "See what creates the second order, increases lifetime value and compounds over time." },
   { name: "Rewards", icon: "/service-icons/rewards.svg", tag: "REWARDS", kicker: "POINTS & PERKS", color: "#f7c61f", desc: "Reward programs that make every purchase feel worth it and bring customers back for more." },
   { name: "Referrals", icon: "/service-icons/referrals.svg", tag: "REFER", kicker: "WORD-OF-MOUTH GROWTH", color: "#ff6fb0", desc: "Referral incentives that turn happy customers into your most trusted acquisition channel." },
   { name: "Loyalty", icon: "/service-icons/loyalty.svg", tag: "LOYALTY", kicker: "LONG-TERM RELATIONSHIPS", color: "#ff5a5a", desc: "Loyalty experiences that turn repeat buyers into brand advocates." },
@@ -354,8 +347,8 @@ export default function Home() {
         <p className="hero-copy">RetentionMax builds data-driven journeys across Email, WhatsApp, SMS and Web Push—helping brands grow repeat purchases, customer lifetime value and sustainable revenue.</p>
         <div className="hero-actions"><a className="button lime" href="#audit">Get your free retention audit <Arrow /></a><a className="text-link" href="#approach">Explore our approach ↓</a></div>
         <div className="engine-scene" ref={engine} aria-label="Animated retention growth engine">
-          <div className="orbit orbit-one"><b className="channel c-email" style={{"--c":"#d65cff"} as React.CSSProperties}><img src="/service-icons/email.svg" alt="" width="30" height="30" /></b><b className="channel c-wa" style={{"--c":"#2db6f5"} as React.CSSProperties}><img src="/service-icons/whatsapp.svg" alt="" width="30" height="30" /></b></div>
-          <div className="orbit orbit-two"><b className="channel c-sms" style={{"--c":"#f08c28"} as React.CSSProperties}><img src="/service-icons/sms.svg" alt="" width="30" height="30" /></b><b className="channel c-push" style={{"--c":"#5bd12a"} as React.CSSProperties}><img src="/service-icons/push.svg" alt="" width="30" height="30" /></b></div>
+          <div className="orbit orbit-one"><b className="channel c-email"><img src="/service-icons/email.svg" alt="" width="30" height="30" /></b><b className="channel c-sms"><img src="/service-icons/sms.svg" alt="" width="30" height="30" /></b><b className="channel c-wa"><img src="/service-icons/whatsapp.svg" alt="" width="30" height="30" /></b><b className="channel c-push"><img src="/service-icons/push.svg" alt="" width="30" height="30" /></b></div>
+          <div className="orbit orbit-two" />
           <div className="engine">
             <span className="engine-ring one" /><span className="engine-ring two" />
             <div className="engine-core"><img src="/max-logo.svg" alt="Max" width="285" height="100" /><small>APPROACH</small></div>
@@ -392,7 +385,7 @@ export default function Home() {
                 <span className="service-kicker">{service.kicker}</span>
                 <h3>{service.name}</h3>
                 <p>{service.desc}</p>
-                <div className="service-card-foot"><span>{service.tag}</span><b>0{index + 1}</b></div>
+                <div className="service-card-foot"><span>{service.tag}</span><b>{String(index + 1).padStart(2, "0")}</b></div>
               </article>
             ))}
           </div>
