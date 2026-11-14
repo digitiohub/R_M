@@ -8,9 +8,9 @@ const digits = (v?: string) => (v ?? "").replace(/\D/g, "");
 
 export const contact = {
   /** Approved company LinkedIn page URL. */
-  linkedin: (process.env.NEXT_PUBLIC_RETENTIONMAX_LINKEDIN ?? "").trim(),
+  linkedin: (process.env.NEXT_PUBLIC_RETENTIONMAX_LINKEDIN ?? "https://www.linkedin.com/company/109381660/").trim(),
   /** Vishal's approved WhatsApp number, digits only with country code (e.g. 91XXXXXXXXXX). */
-  vishalWhatsapp: digits(process.env.NEXT_PUBLIC_VISHAL_WHATSAPP),
+  vishalWhatsapp: digits(process.env.NEXT_PUBLIC_VISHAL_WHATSAPP) || "919545553455",
 };
 
 export const whatsappLink = (number: string, text = "Hello Vishal, I would like to know more about RetentionMax.") =>

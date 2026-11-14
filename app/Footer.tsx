@@ -9,7 +9,7 @@ function WhatsAppIcon() {
 
 /** Shared by the home, services and about pages. `home` makes the anchors in-page links. */
 export default function Footer({ home = false }: { home?: boolean }) {
-  const waHref = whatsappLink(contact.vishalWhatsapp);
+  const waHref = contact.vishalWhatsapp ? `https://wa.me/${contact.vishalWhatsapp}` : "";
   const prefix = home ? "" : "/";
   return (
     <footer>
